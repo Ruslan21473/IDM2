@@ -19,7 +19,7 @@ def info(event: typing.Union[MySignalEvent, SignalEvent]) -> str:
     Автодобавление в друзья: {'да' if 'AFA Thread' in [th.getName() for th in threading.enumerate()] else 'нет'}
     Вечный онлайн: {'да' if 'Online Thread' in [th.getName() for th in threading.enumerate()] else 'нет'}
 
-    Панель управления: https://{event.db.host}/
+    
 
     Информация о чате:
     Я дежурный в чате: {'да' if event.chat.installed else 'нет'}
