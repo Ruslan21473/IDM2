@@ -12,7 +12,7 @@ def delete_msg(api: VkApi, msg_id: int):
 @dp.my_signal_event_handle('-смс', 'dsm')
 def delete_self_message(event: MySignalEvent) -> str:
     message_id = event.msg['id']
-    utils.edit_message(event.api, event.chat.peer_id, message_id, message="... удаляю сообщения ...")
+    utils.edit_message(event.api, event.chat.peer_id, message_id, message="...удаляю сообщения...")
 
     user_id = event.msg['from_id']
 
@@ -28,11 +28,11 @@ def delete_self_message(event: MySignalEvent) -> str:
         message_id = utils.new_message(event.api, event.chat.peer_id, message="✅ Сообщения удалены")
     except VkApiResponseException as e:
         if e.error_code == 924:
-            message_id = utils.new_message(event.api, event.chat.peer_id, message="❗ Не удалось удалить сообщения.")
+            message_id = utils.new_message(event.api, event.chat.peer_id, message="❗ Не удалось удалить сообщения")
         else:
             message_id = utils.new_message(event.api, event.chat.peer_id, message=f"❗ Не удалось удалить сообщения. Ошибка VK {e.error_msg}")
     except:
-        message_id = utils.new_message(event.api, event.chat.peer_id, message=f"❗ Произошла неизвестная ошибка.")
+        message_id = utils.new_message(event.api, event.chat.peer_id, message=f"❗ Произошла неизвестная ошибка")
 
     t = Timer(2, delete_msg, (event.api, message_id))
     t.start()
